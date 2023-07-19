@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="PeelHealth Test Suite">
+
+	<parameter name="browser" value="firefox" />
+
+	<test name="Peel Region Health page test ">
+		<classes>
+			<class name="com.algoma.qa.tests.PeelRegionHealthTest" />
+		</classes>
+	</test>
+
+	<test name="Peel Region Health page: Related links test ">
+		<classes>
+			<class
+				name="com.algoma.qa.tests.PeelRegionHealthRelatedLinksTest" />
+		</classes>
+	</test>
+
+	<test
+		name="Peel Region Health Newsletter Signup page: Incorrect signup test ">
+		<classes>
+			<class
+				name="com.algoma.qa.tests.PeelRegionHealthFailedSubscribeTest" />
+		</classes>
+	</test>
+
+</suite>
