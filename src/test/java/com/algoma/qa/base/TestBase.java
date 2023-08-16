@@ -1,6 +1,14 @@
 package com.algoma.qa.base;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -31,6 +39,21 @@ public class TestBase {
 	public void setup(String browser) {
 		peelPage = new PeelRegionHealthPage(browser);
 		driver = peelPage.getDriver();
+	}
+
+	@AfterMethod
+	public void captureScreenshot(ITestResult result) {
+		if (result.getStatus() == ITestResult.FAILURE) {
+			TakesScreenshot ts = (TakesScreenshot) driver;
+			File tempScreenshot = ts.getScreenshotAs(OutputType.FILE);
+			String destinationPath = "./test-output/screenshots/" + result.getName() + "_" + System.currentTimeMillis()
+					+ ".png";
+			try {
+				FileUtils.copyFile(tempScreenshot, new File(destinationPath));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@AfterTest

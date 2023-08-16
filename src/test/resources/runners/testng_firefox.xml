@@ -2,6 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="PeelHealth Test Suite">
+	<listeners>
+		<listener
+			class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"></listener>
+	</listeners>
 
 	<parameter name="browser" value="firefox" />
 
